@@ -1,6 +1,6 @@
-from colorama import init, Fore, Back, Style
-
-init()
+import os
+from colorama import init, Fore, Back, Style, deinit
+winwidth = os.get_terminal_size()[0]
 
 
 class Visualizer:
@@ -9,11 +9,18 @@ class Visualizer:
         self.initdata = self.algo.data['algorithm']
         self.type = self.initdata['type']
         self.name = self.initdata['name']
-        self.label = f'''{Fore.CYAN + Style.BRIGHT}VisualizeIt - Algorithms Visualized 
-{Style.RESET_ALL}Currently performing {self.type.title()} using
-{self.name.title()} on
-[ {" ".join(map(str, self.algo.arr))} ]
+        self.mainlabel = f'''{Fore.CYAN + Style.BRIGHT}{"VisualizeIt - Algorithms Visualized".center(winwidth)}
+{Style.RESET_ALL}Currently performing {Fore.RED + Style.BRIGHT + self.type.title()+Style.RESET_ALL} using
+{Style.BRIGHT+Fore.GREEN+self.name.title()+Style.RESET_ALL} on
+[ {Style.BRIGHT+" ".join(map(str, self.algo.arr))+Style.RESET_ALL} ]
 '''
 
-    def run(self):
-        print(self.label)
+
+class SearchVisualizer(Visualizer):
+    def __init__(self):
+        super()
+
+
+class SortVisualizer(Visualizer):
+    def __init__(self):
+        super()
