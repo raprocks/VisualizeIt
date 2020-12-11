@@ -17,8 +17,14 @@ class Visualizer:
 
 
 class SearchVisualizer(Visualizer):
-    def __init__(self):
+    def __init__(self, algoimpl):
         super()
+        self.locallabel = f'''
+
+'''
+
+    def run(self):
+        print("yo>")
 
 
 class SortVisualizer(Visualizer):
