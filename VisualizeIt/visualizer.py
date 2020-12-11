@@ -1,6 +1,15 @@
+import time
 import os
-from colorama import init, Fore, Back, Style, deinit
+import sys
+from colorama import init, Fore, Back, Style, deinit, Cursor
 winwidth = os.get_terminal_size()[0]
+init()
+
+UP = Cursor.UP()
+DOWN = Cursor.DOWN()
+RIGHT = Cursor.FORWARD()
+LEFT = Cursor.BACK()
+POS = Cursor.POS()
 
 
 class Visualizer:
@@ -12,19 +21,38 @@ class Visualizer:
         self.mainlabel = f'''{Fore.CYAN + Style.BRIGHT}{"VisualizeIt - Algorithms Visualized".center(winwidth)}
 {Style.RESET_ALL}Currently performing {Fore.RED + Style.BRIGHT + self.type.title()+Style.RESET_ALL} using
 {Style.BRIGHT+Fore.GREEN+self.name.title()+Style.RESET_ALL} on
-[ {Style.BRIGHT+" ".join(map(str, self.algo.arr))+Style.RESET_ALL} ]
+[ {Style.BRIGHT+" ".join(map(str, self.algo.arr))+Style.RESET_ALL} ] \n
 '''
 
 
 class SearchVisualizer(Visualizer):
-    def __init__(self, algoimpl):
-        super()
-        self.locallabel = f'''
+    def __init__(self, algoimpl) -> None:
+        super().__init__(algoimpl)
+        self.data = self.algo.data
 
+    def run(self, element):
+        if sys.platform != "linux":
+            os.system("cls")
+        else:
+            os.system("clear")
+
+        runner = self.algo.step_search(element)
+        self.data = runner.__next__()
+
+        # print(self.locallabel)
+
+        while not self.data['found']:
+            label = f'''
+{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL}   {element}
+{self.data}
 '''
-
-    def run(self):
-        print("yo>")
+            print(POS + self.mainlabel + label)
+            time.sleep(1)
+            try:
+                self.data = runner.__next__()
+            except StopIteration:
+                pass
+        deinit()
 
 
 class SortVisualizer(Visualizer):

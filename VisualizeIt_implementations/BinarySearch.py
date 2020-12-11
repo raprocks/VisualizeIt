@@ -10,7 +10,9 @@ class BinarySearch:
                 'name': 'Binary Search',
             },
             'array': self.arr,
-            'process_data': {}
+            'process_data': {},
+            'searching': True,
+            'msg': "Starting the algo"
         }
 
     def step_search(self, element: int):
@@ -21,13 +23,12 @@ class BinarySearch:
         self.data['process_data']['mid'] = mid
         self.data['searching'] = True
         while start <= end:
-            self.data['searching'] = False
+
             if self.arr[mid] < element:
                 self.data['comparing'] = True
                 self.data['comparing_data'] = {
                     'ele1': self.arr[mid],
                     'ele2': element}
-                self.data['msg'] = f"{self.data['comparing_data']['ele1'] if self.data['comparing_data']['ele1'] < self.data['comparing_data']['ele2'] else self.data['comparing_data']['ele2']} is smaller"
                 start = mid+1
                 self.data['msg'] = f"setting start to {start}"
                 yield self.data
@@ -37,7 +38,6 @@ class BinarySearch:
                 self.data['comparing_data'] = {
                     'ele1': self.arr[mid],
                     'ele2': element}
-                self.data['msg'] = f"{self.data['comparing_data']['ele1'] if self.data['comparing_data']['ele1'] > self.data['comparing_data']['ele2'] else self.data['comparing_data']['ele2']} is greater"
                 end = mid-1
                 self.data['msg'] = f"setting end to {end}"
                 yield self.data
@@ -50,4 +50,5 @@ class BinarySearch:
         if start > end:
             self.data['searching'] = False
             self.data['found'] = False
+            self.data['msg'] = f"{element} not found in {self.arr}"
             return self.data
