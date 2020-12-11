@@ -28,9 +28,11 @@ class BinarySearch:
                 self.data['comparing'] = True
                 self.data['comparing_data'] = {
                     'ele1': self.arr[mid],
-                    'ele2': element}
+                    'ele2': element
+                }
                 start = mid+1
                 self.data['msg'] = f"setting start to {start}"
+                self.data['process_data']['start'] = start
                 yield self.data
 
             elif self.arr[mid] > element:
@@ -40,11 +42,13 @@ class BinarySearch:
                     'ele2': element}
                 end = mid-1
                 self.data['msg'] = f"setting end to {end}"
+                self.data['process_data']['end'] = end
                 yield self.data
             elif self.arr[mid] == element:
                 self.data['found'] = True
                 return self.data
             mid = (start+end)//2
+            self.data['process_data']['mid'] = mid
             self.data['msg'] = f"setting mid to {mid}"
             yield self.data
         if start > end:

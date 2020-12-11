@@ -2,7 +2,6 @@ import time
 import os
 import sys
 from colorama import init, Fore, Back, Style, deinit, Cursor
-winwidth = os.get_terminal_size()[0]
 init()
 
 UP = Cursor.UP()
@@ -14,6 +13,7 @@ POS = Cursor.POS()
 
 class Visualizer:
     def __init__(self, algoimpl) -> None:
+        winwidth = os.get_terminal_size()[0]
         self.algo = algoimpl
         self.initdata = self.algo.data['algorithm']
         self.type = self.initdata['type']
@@ -42,9 +42,13 @@ class SearchVisualizer(Visualizer):
         # print(self.locallabel)
 
         while not self.data['found']:
-            label = f'''
-{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL}   {element}
-{self.data}
+
+            winwidth = os.get_terminal_size()[0]
+            label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} {element} in {self.algo.arr}
+
+{Fore.RED + Style.BRIGHT + str(self.data['process_data']['start'])}{(Fore.GREEN + Style.BRIGHT + str(self.data['process_data']['mid'])).center(winwidth-10)}{Fore.CYAN + Style.BRIGHT + str(self.data['process_data']['end']) + Style.RESET_ALL}
+
+{("["+" ".join([str(i) for i in self.algo.arr])+"]").center(winwidth)}
 '''
             print(POS + self.mainlabel + label)
             time.sleep(1)
