@@ -46,7 +46,7 @@ class SearchVisualizer(Visualizer):
             winwidth = os.get_terminal_size()[0]
             label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} {element} in {self.algo.arr}
 
-{Fore.RED + Style.BRIGHT + str(self.data['process_data']['start'])}{(Fore.GREEN + Style.BRIGHT + str(self.data['process_data']['mid'])).center(winwidth-10)}{Fore.CYAN + Style.BRIGHT + str(self.data['process_data']['end']) + Style.RESET_ALL}
+{Fore.RED + Style.BRIGHT + str(self.data['process_data']['start']).ljust(2)}{Fore.GREEN + Style.BRIGHT + (str(self.data['process_data']['mid'])).center(winwidth-4)}{Fore.CYAN + Style.BRIGHT + str(self.data['process_data']['end']).rjust(2) + Style.RESET_ALL}
 
 {("["+" ".join([str(i) for i in self.algo.arr])+"]").center(winwidth)}
 '''
