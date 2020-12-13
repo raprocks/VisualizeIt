@@ -11,6 +11,13 @@ LEFT = Cursor.BACK()
 POS = Cursor.POS()
 
 
+def clrscr():
+    if sys.platform != "linux":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
 class Visualizer:
     def __init__(self, algoimpl) -> None:
         winwidth = os.get_terminal_size()[0]
@@ -31,11 +38,7 @@ class SearchVisualizer(Visualizer):
         self.data = self.algo.data
 
     def run(self, element):
-        if sys.platform != "linux":
-            os.system("cls")
-        else:
-            os.system("clear")
-
+        clrscr()
         runner = self.algo.step_search(element)
         self.data = runner.__next__()
 
@@ -46,6 +49,7 @@ class SearchVisualizer(Visualizer):
                 found = True
 
             winwidth = os.get_terminal_size()[0]
+            clrscr()
             label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} {element} in {self.algo.arr}
 
 {Fore.RED + Style.BRIGHT + ('Start : '+ str(self.data['process_data']['start'])).ljust(10)}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(self.data['process_data']['mid'])).center(winwidth-18)}{Fore.CYAN + Style.BRIGHT + ("End : " + str(self.data['process_data']['end'])).rjust(8) + Style.RESET_ALL}
