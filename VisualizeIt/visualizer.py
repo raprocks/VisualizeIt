@@ -40,15 +40,19 @@ class SearchVisualizer(Visualizer):
         self.data = runner.__next__()
 
         # print(self.locallabel)
-
-        while not self.data['found']:
+        found = False
+        while not found:
+            if self.data['found'] is True:
+                found = True
 
             winwidth = os.get_terminal_size()[0]
             label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} {element} in {self.algo.arr}
 
-{Fore.RED + Style.BRIGHT + str(self.data['process_data']['start']).ljust(2)}{Fore.GREEN + Style.BRIGHT + (str(self.data['process_data']['mid'])).center(winwidth-4)}{Fore.CYAN + Style.BRIGHT + str(self.data['process_data']['end']).rjust(2) + Style.RESET_ALL}
+{Fore.RED + Style.BRIGHT + ('Start : '+ str(self.data['process_data']['start'])).ljust(10)}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(self.data['process_data']['mid'])).center(winwidth-18)}{Fore.CYAN + Style.BRIGHT + ("End : " + str(self.data['process_data']['end'])).rjust(8) + Style.RESET_ALL}
 
 {("["+" ".join([str(i) for i in self.algo.arr])+"]").center(winwidth)}
+
+{self.data['msg'].center(winwidth)}
 '''
             print(POS + self.mainlabel + label)
             time.sleep(1)

@@ -46,6 +46,8 @@ class BinarySearch:
                 yield self.data
             elif self.arr[mid] == element:
                 self.data['found'] = True
+                self.data['searching'] = False
+                self.data['msg'] = f"{element} found at index {mid}"
                 return self.data
             mid = (start+end)//2
             self.data['process_data']['mid'] = mid
