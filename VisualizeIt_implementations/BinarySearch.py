@@ -12,7 +12,8 @@ class BinarySearch:
             'array': self.arr,
             'process_data': {},
             'searching': True,
-            'msg': "Starting the Algorithm"
+            'msg': "Starting the Algorithm",
+            'notfound': False
         }
 
     def step_search(self, element: int):
@@ -57,5 +58,6 @@ class BinarySearch:
         if start > end:
             self.data['searching'] = False
             self.data['found'] = False
+            self.data['notfound'] = True
             self.data['msg'] = f"{element} Not Found in {self.arr}"
             return self.data

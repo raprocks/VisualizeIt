@@ -45,16 +45,24 @@ class SearchVisualizer(Visualizer):
         # print(self.locallabel)
         found = False
         while not found:
-            if self.data['found'] is True:
+            if self.data['found'] is True or self.data['notfound'] is True:
                 found = True
 
             winwidth = os.get_terminal_size()[0]
             clrscr()
-            label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} {element} in {self.algo.arr}
+            start = self.data['process_data']['start']
+            mid = self.data['process_data']['mid']
+            end = self.data['process_data']['end']
+            label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} for {Style.BRIGHT+str(element)} in {self.algo.arr}
 
-{Fore.RED + Style.BRIGHT + ('Start : '+ str(self.data['process_data']['start'])).ljust(10)}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(self.data['process_data']['mid'])).center(winwidth-18)}{Fore.CYAN + Style.BRIGHT + ("End : " + str(self.data['process_data']['end'])).rjust(8) + Style.RESET_ALL}
+{Fore.RED + Style.BRIGHT + ('Start : '+ str(start)).ljust(10)}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(mid)).center(winwidth-18)}{Fore.CYAN + Style.BRIGHT + ("End : " + str(end)).rjust(8) + Style.RESET_ALL}
 
-{("["+" ".join([str(i) for i in self.algo.arr])+"]").center(winwidth)}
+{("["+" ".join([(Style.DIM + str(val)) if idx < start
+    else (Fore.RED + Style.BRIGHT + str(val) + Style.RESET_ALL) if start==idx
+    else (Fore.GREEN + Style.BRIGHT + str(val) + Style.RESET_ALL) if idx == mid
+    else (Fore.CYAN + Style.BRIGHT + str(val) + Style.RESET_ALL) if idx == end
+    else (Style.BRIGHT + str(val) + Style.RESET_ALL)
+    for idx,val in enumerate(self.algo.arr)])+"]").ljust(winwidth//2 -1)}
 
 {self.data['msg'].center(winwidth)}
 '''
