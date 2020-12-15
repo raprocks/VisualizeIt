@@ -1,7 +1,7 @@
 import time
 import os
 import sys
-from colorama import init, Fore, Back, Style, deinit, Cursor
+from colorama import init, Fore, Style, deinit, Cursor
 init()
 
 UP = Cursor.UP()
@@ -25,8 +25,10 @@ class Visualizer:
         self.initdata = self.algo.data['algorithm']
         self.type = self.initdata['type']
         self.name = self.initdata['name']
-        self.mainlabel = f'''{Fore.CYAN + Style.BRIGHT}{"VisualizeIt - Algorithms Visualized".center(winwidth)}
-{Style.RESET_ALL}Currently performing {Fore.RED + Style.BRIGHT + self.type.title()+Style.RESET_ALL} using
+        self.mainlabel = f'''{Fore.CYAN + Style.BRIGHT}{
+        "VisualizeIt - Algorithms Visualized".center(winwidth)}
+{Style.RESET_ALL}Currently performing {Fore.RED + Style.BRIGHT +
+self.type.title()+Style.RESET_ALL} using
 {Style.BRIGHT+Fore.GREEN+self.name.title()+Style.RESET_ALL} on
 [ {Style.BRIGHT+" ".join(map(str, self.algo.arr))+Style.RESET_ALL} ] \n
 '''
@@ -35,9 +37,14 @@ class Visualizer:
 class SearchVisualizer(Visualizer):
     def __init__(self, algoimpl) -> None:
         super().__init__(algoimpl)
+        self.speeds = {
+            'slow': 4,
+            'mid': 2,
+            'fast': 1
+        }
         self.data = self.algo.data
 
-    def run(self, element):
+    def run(self, element, speed='mid'):
         clrscr()
         runner = self.algo.step_search(element)
         self.data = runner.__next__()
@@ -53,9 +60,14 @@ class SearchVisualizer(Visualizer):
             start = self.data['process_data']['start']
             mid = self.data['process_data']['mid']
             end = self.data['process_data']['end']
-            label = f'''{Style.BRIGHT}{Fore.GREEN if self.data["searching"] else Fore.RED}\tSearching{Style.RESET_ALL} for {Style.BRIGHT+str(element)} in {self.algo.arr}
+            label = f'''{Style.BRIGHT}{
+                    Fore.GREEN if self.data["searching"]
+                    else Fore.RED}\tSearching{Style.RESET_ALL} for {
+                    Style.BRIGHT+str(element)} in {self.algo.arr}
 
-{Fore.RED + Style.BRIGHT + ('Start : '+ str(start)).ljust(10)}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(mid)).center(winwidth-18)}{Fore.CYAN + Style.BRIGHT + ("End : " + str(end)).rjust(8) + Style.RESET_ALL}
+{Fore.RED + Style.BRIGHT + ('Start : '+ str(start)).ljust(10)
+}{Fore.GREEN + Style.BRIGHT + ("Mid : "+ str(mid)).center(winwidth-18)
+}{Fore.CYAN + Style.BRIGHT + ("End : " + str(end)).rjust(8) + Style.RESET_ALL}
 
 {("["+" ".join([(Style.DIM + str(val)) if idx < start
     else (Fore.RED + Style.BRIGHT + str(val) + Style.RESET_ALL) if start==idx
@@ -67,7 +79,7 @@ class SearchVisualizer(Visualizer):
 {self.data['msg'].center(winwidth)}
 '''
             print(POS + self.mainlabel + label)
-            time.sleep(1)
+            time.sleep(1*self.speeds[speed])
             try:
                 self.data = runner.__next__()
             except StopIteration:

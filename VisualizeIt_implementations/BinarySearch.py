@@ -24,7 +24,8 @@ class BinarySearch:
         self.data['process_data']['mid'] = mid
         self.data['searching'] = True
         yield self.data
-        self.data['msg'] = f"Current Start is {start}, Mid is {mid} and End is {end}"
+        self.data['msg'] = f'''Current Start is {
+                start}, Mid is {mid} and End is {end}'''
         while start <= end:
             if self.arr[mid] < element:
                 self.data['comparing'] = True
