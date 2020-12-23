@@ -107,6 +107,7 @@ class SortVisualizer(Visualizer):
         runner = self.algo.sort()
         self.data = runner.__next__()
         sorted_arr = False
+        arr_len = len(self.data['array'])
         while not sorted_arr:
             if self.data['sorted'] is True:
                 sorted_arr = True
@@ -115,6 +116,8 @@ class SortVisualizer(Visualizer):
             clrscr()
             comparing_idx = self.data['comparing_data'].values()
             swapping_idx = self.data['swapping_data'].values()
+            pass_number = self.data['pass']
+            fixed = arr_len - 1-pass_number
             label = f'''{Style.BRIGHT}{
                     Fore.GREEN if self.data["comparing"]
                     else Fore.RED}\tComparing{Style.RESET_ALL}
@@ -125,7 +128,9 @@ class SortVisualizer(Visualizer):
     if self.data['comparing'] and (idx in comparing_idx)
     else (Fore.GREEN + Style.BRIGHT + str(val) + Style.RESET_ALL)
     if self.data['swapping'] and (idx in swapping_idx)
-    else (Style.DIM + str(val) + Style.RESET_ALL)
+    else (Style.BRIGHT + str(val) + Style.RESET_ALL)
+    if idx>= fixed
+    else (str(val) + Style.RESET_ALL)
     for idx,val in enumerate(self.data['arr'])])+"]" + Style.RESET_ALL)}
 
 {Style.BRIGHT + Fore.LIGHTRED_EX
