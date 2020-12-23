@@ -6,10 +6,10 @@ class BinarySearch:
         self.arr = arr
         self.data = {
             'algorithm': {
-                'type': 'search',
+                'type': 'Search',
                 'name': 'Binary Search',
             },
-            'array': self.arr,
+            'array': self.arr.copy(),
             'process_data': {},
             'searching': True,
             'msg': "Starting the Algorithm",
