@@ -95,6 +95,7 @@ class SortVisualizer(Visualizer):
         super().__init__(algoimpl)
         self.algo = algoimpl
         self.speeds = {
+            'godspeed': 0.1,
             'ultra': 0.3,
             'slow': 4,
             'mid': 2,
@@ -107,7 +108,6 @@ class SortVisualizer(Visualizer):
         runner = self.algo.sort()
         self.data = runner.__next__()
         sorted_arr = False
-        arr_len = len(self.data['array'])
         while not sorted_arr:
             if self.data['sorted'] is True:
                 sorted_arr = True
@@ -117,21 +117,28 @@ class SortVisualizer(Visualizer):
             comparing_idx = self.data['comparing_data'].values()
             swapping_idx = self.data['swapping_data'].values()
             pass_number = self.data['pass']
-            fixed = arr_len - 1-pass_number
+            fixed = self.data.get('fixed', len(self.algo.arr))
+            visual_fixed = pass_number-1
+            comparisons = self.data['comparisons']
+            swaps = self.data['swaps']
             label = f'''{Style.BRIGHT}{
                     Fore.GREEN if self.data["comparing"]
                     else Fore.RED}\tComparing{Style.RESET_ALL}
+            pass : {pass_number} fixed : {visual_fixed}
+            comparisons : {comparisons} swaps : {swaps}
 
 {"Array : " + ("[" + " ".join([
-    (Style.DIM + str(val) + Style.RESET_ALL) if (idx not in comparing_idx) and (idx not in swapping_idx)
+    (Style.DIM + str(val) + Style.RESET_ALL)
+    if (idx not in comparing_idx) and (idx not in swapping_idx) and (idx < fixed)
     else (Fore.RED + Style.BRIGHT + str(val) + Style.RESET_ALL)
     if self.data['comparing'] and (idx in comparing_idx)
     else (Fore.GREEN + Style.BRIGHT + str(val) + Style.RESET_ALL)
     if self.data['swapping'] and (idx in swapping_idx)
-    else (Style.BRIGHT + str(val) + Style.RESET_ALL)
-    if idx>= fixed
-    else (str(val) + Style.RESET_ALL)
-    for idx,val in enumerate(self.data['arr'])])+"]" + Style.RESET_ALL)}
+    else (Style.BRIGHT + Fore.GREEN + str(val) + Style.RESET_ALL)
+    if idx > fixed
+    else (Style.DIM + str(val) + Style.RESET_ALL)
+    for idx,val in enumerate(self.data['arr'])
+    ])+"]" + Style.RESET_ALL)}
 
 {Style.BRIGHT + Fore.LIGHTRED_EX
 + self.data['msg'].center(winwidth) + Style.RESET_ALL}
