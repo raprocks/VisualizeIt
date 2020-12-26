@@ -23,7 +23,6 @@ class BubbleSort:
         }
 
     def sort(self):
-        yield self.data
         self.data['current_array'] = self.arr
         self.data['fixed'] = len(self.arr)-1
         yield self.data

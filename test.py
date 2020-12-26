@@ -9,4 +9,4 @@ from VisualizeIt_implementations.BubbleSort import BubbleSort
 
 algorithm = BubbleSort([6, 8, 5, 1, 4, 18, 26, 2, 0])
 printer = SortVisualizer(algorithm)
-printer.run(speed='godspeed')
+printer.run(speed='mid')
