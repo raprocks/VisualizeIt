@@ -2,6 +2,10 @@ from typing import Union
 
 
 class BinarySearch:
+    '''
+    Class for Performing Binary Search on an *Sorted* array for an Element
+    '''
+
     def __init__(self, arr: Union[list, tuple]):
         self.arr = arr
         self.data = {

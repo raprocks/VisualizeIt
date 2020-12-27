@@ -1,4 +1,4 @@
-from colorama import Cursor, init, deinit
+from colorama import Cursor, init, deinit, Fore, Back, Style
 init()
 UP = Cursor.UP()
 DOWN = Cursor.DOWN()
@@ -6,17 +6,5 @@ RIGHT = Cursor.FORWARD()
 LEFT = Cursor.BACK()
 
 
-def p(x):
-    print(x, end='')
-
-
-p('H'+DOWN+LEFT*3)
-p('I'+LEFT+DOWN)
-p('I'+LEFT+DOWN)
-p(UP*3+RIGHT)
-p('B')
-p(DOWN+LEFT)
-p('Y')
-p(DOWN+LEFT)
-p('E')
-deinit()
+print(Fore.LIGHTBLUE_EX+"Hello"+Style.RESET_ALL)
+print(Fore.BLUE + "Hello"+Style.RESET_ALL)
