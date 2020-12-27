@@ -120,6 +120,7 @@ class SortVisualizer(Visualizer):
             visual_fixed = pass_number-1
             comparisons = self.data['comparisons']
             swaps = self.data['swaps']
+            clrscr()
             label = f'''
 {Style.BRIGHT}
 {("Total Passes : "+ str(pass_number)).center(winwidth//2)}{
