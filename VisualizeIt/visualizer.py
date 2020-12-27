@@ -121,11 +121,18 @@ class SortVisualizer(Visualizer):
             visual_fixed = pass_number-1
             comparisons = self.data['comparisons']
             swaps = self.data['swaps']
-            label = f'''{Style.BRIGHT}{
-                    Fore.GREEN if self.data["comparing"]
-                    else Fore.RED}\tComparing{Style.RESET_ALL}
-            pass : {pass_number} fixed : {visual_fixed}
-            comparisons : {comparisons} swaps : {swaps}
+            label = f'''
+{Style.BRIGHT}
+{("Total Passes : "+ str(pass_number)).center(winwidth//2)}{
+("Fixed Elements : " + str(visual_fixed)).center(winwidth//2)}
+{("Comparisons : " + str(comparisons)).center(winwidth//2)}{
+("Swaps : " + str(swaps)).center(winwidth//2)}
+{Style.BRIGHT}{
+Fore.GREEN if self.data["comparing"] else Fore.RED}{"COMPARING".center(winwidth)}{
+Style.RESET_ALL}
+{Style.BRIGHT}{
+Fore.LIGHTGREEN_EX if self.data['swapping'] else Fore.LIGHTRED_EX}{"SWAPPING".center(winwidth)}{
+Style.RESET_ALL}
 
 {"Array : " + ("[" + " ".join([
     (Style.DIM + str(val) + Style.RESET_ALL)
@@ -134,7 +141,7 @@ class SortVisualizer(Visualizer):
     if self.data['comparing'] and (idx in comparing_idx)
     else (Fore.GREEN + Style.BRIGHT + str(val) + Style.RESET_ALL)
     if self.data['swapping'] and (idx in swapping_idx)
-    else (Style.BRIGHT + Fore.GREEN + str(val) + Style.RESET_ALL)
+    else (Style.BRIGHT + Fore.LIGHTCYAN_EX + str(val) + Style.RESET_ALL)
     if idx > fixed
     else (Style.DIM + str(val) + Style.RESET_ALL)
     for idx,val in enumerate(self.data['arr'])
