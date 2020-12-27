@@ -113,7 +113,6 @@ class SortVisualizer(Visualizer):
                 sorted_arr = True
 
             winwidth = os.get_terminal_size()[0]
-            clrscr()
             comparing_idx = self.data['comparing_data'].values()
             swapping_idx = self.data['swapping_data'].values()
             pass_number = self.data['pass']
