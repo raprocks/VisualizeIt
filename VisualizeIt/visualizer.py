@@ -107,12 +107,13 @@ class SortVisualizer(Visualizer):
         clrscr()
         runner = self.algo.sort()
         self.data = runner.__next__()
+        winwidth_old = os.get_terminal_size()[0]
         sorted_arr = False
         while not sorted_arr:
             if self.data['sorted'] is True:
                 sorted_arr = True
 
-            winwidth = os.get_terminal_size()[0]
+            winwidth_new = os.get_terminal_size()[0]
             comparing_idx = self.data['comparing_data'].values()
             swapping_idx = self.data['swapping_data'].values()
             pass_number = self.data['pass']
@@ -120,9 +121,12 @@ class SortVisualizer(Visualizer):
             visual_fixed = pass_number-1
             comparisons = self.data['comparisons']
             swaps = self.data['swaps']
+            winwidth = winwidth_new
             if sorted_arr:
                 comparing_idx = []
                 swapping_idx = []
+            if winwidth_new != winwidth_old:
+                clrscr()
 
             label = f'''
 {Style.BRIGHT}
@@ -159,6 +163,7 @@ Style.RESET_ALL}
 '''
             print(POS + self.mainlabel + label)
             time.sleep(1*self.speeds[speed])
+            winwidth_old = winwidth_new
             try:
                 self.data = runner.__next__()
             except StopIteration:

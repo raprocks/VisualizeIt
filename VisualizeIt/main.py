@@ -19,11 +19,11 @@ def visualize_sort(array: List[int] = [], speed: str = 'mid'):
 
 
 @app.command()
-def visualize_search(array: List[int], element: int = 0, speed: str = 'mid'):
+def visualize_search(array: str, element: int = 0, speed: str = 'mid'):
     """
     Search Visualizer
     """
-    pass
+    print("array is", array.split(' '))
 
 
 if __name__ == "__main__":
