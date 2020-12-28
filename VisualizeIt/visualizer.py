@@ -1,7 +1,6 @@
 import time
 import os
 import sys
-from typing import Union
 from colorama import init, Fore, Style, deinit, Cursor
 from VisualizeIt_implementations.BinarySearch import BinarySearch
 from VisualizeIt_implementations.BubbleSort import BubbleSort
@@ -95,8 +94,9 @@ class SortVisualizer(Visualizer):
         super().__init__(algoimpl)
         self.algo = algoimpl
         self.speeds = {
-            'godspeed': 0.1,
-            'ultra': 0.3,
+            'flash': 0.03,
+            'godspeed': 0.2,
+            'ultra': 0.7,
             'slow': 4,
             'mid': 2,
             'fast': 1
@@ -120,7 +120,10 @@ class SortVisualizer(Visualizer):
             visual_fixed = pass_number-1
             comparisons = self.data['comparisons']
             swaps = self.data['swaps']
-            clrscr()
+            if sorted_arr:
+                comparing_idx = []
+                swapping_idx = []
+
             label = f'''
 {Style.BRIGHT}
 {("Total Passes : "+ str(pass_number)).center(winwidth//2)}{
@@ -128,15 +131,19 @@ class SortVisualizer(Visualizer):
 {("Comparisons : " + str(comparisons)).center(winwidth//2)}{
 ("Swaps : " + str(swaps)).center(winwidth//2)}
 {Style.BRIGHT}{
-Fore.GREEN if self.data["comparing"] else Fore.RED}{"COMPARING".center(winwidth)}{
+Fore.GREEN if self.data["comparing"] else Fore.RED
+}{"COMPARING".center(winwidth)}{
 Style.RESET_ALL}
 {Style.BRIGHT}{
-Fore.LIGHTGREEN_EX if self.data['swapping'] else Fore.LIGHTRED_EX}{"SWAPPING".center(winwidth)}{
+Fore.LIGHTGREEN_EX if self.data['swapping'] else Fore.LIGHTRED_EX
+}{"SWAPPING".center(winwidth)}{
 Style.RESET_ALL}
 
 {"Array : " + ("[" + " ".join([
     (Style.DIM + str(val) + Style.RESET_ALL)
-    if (idx not in comparing_idx) and (idx not in swapping_idx) and (idx < fixed)
+    if (idx not in comparing_idx) and
+    (idx not in swapping_idx) and (idx < fixed
+    )
     else (Fore.RED + Style.BRIGHT + str(val) + Style.RESET_ALL)
     if self.data['comparing'] and (idx in comparing_idx)
     else (Fore.GREEN + Style.BRIGHT + str(val) + Style.RESET_ALL)

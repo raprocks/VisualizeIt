@@ -1,9 +1,9 @@
-from VisualizeIt.visualizer import SortVisualizer
+from visualizer import SortVisualizer
 from VisualizeIt_implementations.BubbleSort import BubbleSort
 # Binary Search
-#algorithm = BinarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+# algorithm = BinarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-#printer = SearchVisualizer(algorithm)
+# printer = SearchVisualizer(algorithm)
 
 # printer.run(element=100)
 
