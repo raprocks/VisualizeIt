@@ -1,6 +1,6 @@
-from __init__ import create_random_array
+from . import create_random_array
 import typer
-from visualizer import SortVisualizer
+from VisualizeIt.visualizer import SortVisualizer
 from VisualizeIt_implementations.BubbleSort import BubbleSort
 from typing import List
 app = typer.Typer()

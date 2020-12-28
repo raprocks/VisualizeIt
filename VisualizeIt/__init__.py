@@ -1,3 +1,10 @@
+"""
+VisualizeIt base package
+"""
+
+__version__ = '0.1'
+
+
 import random
 
 
