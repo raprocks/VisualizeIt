@@ -1,7 +1,5 @@
-from . import create_random_array
+from __init__ import create_random_array
 import typer
-from VisualizeIt.visualizer import SortVisualizer
-from VisualizeIt_implementations.BubbleSort import BubbleSort
 from random import choice
 app = typer.Typer()
 
@@ -19,7 +17,10 @@ def visualize_sort(array: str = "", speed: str = 'mid', array_size: int = 10):
         array = create_random_array(array_size)
     else:
         array = str_to_arr(array)
+
+    from VisualizeIt_implementations.BubbleSort import BubbleSort
     algorithm = BubbleSort(list(array))
+    from VisualizeIt.visualizer import SortVisualizer
     printer = SortVisualizer(algorithm)
     printer.run(speed=speed)
 

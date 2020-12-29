@@ -12,10 +12,11 @@ setup(
     author_email="rahulhimesh09@gmail.com",
     license="GPLv3+",
     url="https://github.com/raprocks/VisualizeIt",
-    install_requires=["colorama", "typer"], long_description=long_des,
+    install_requires=["colorama", "typer"],
+    long_description=long_des,
     long_description_content_type="text/markdown",
     package_dir={'VisualizeIt': "VisualizeIt",
-                 'VisualizeIt_implementations': "VisualizeIt/VisualizeIt_implementations/"},
+                 'VisualizeIt_implementations': "VisualizeIt/VisualizeIt_implementations"},
     package_data={
         "VisualizeIt": ["VisualizeIt_implementations/*"]
     },
