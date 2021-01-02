@@ -18,6 +18,14 @@ def clrscr():
 
 class Visualizer:
     def __init__(self, algoimpl) -> None:
+        self.speeds = {
+            'flash': 0.03,
+            'godspeed': 0.2,
+            'ultra': 0.7,
+            'slow': 4,
+            'mid': 2,
+            'fast': 1
+        }
         winwidth = os.get_terminal_size()[0]
         self.algo = algoimpl
         self.initdata = self.algo.data['algorithm']
@@ -37,11 +45,6 @@ class SearchVisualizer(Visualizer):
     def __init__(self, algoimpl: BinarySearch) -> None:
         super().__init__(algoimpl)
         self.algo = algoimpl
-        self.speeds = {
-            'slow': 4,
-            'mid': 2,
-            'fast': 1
-        }
         self.data = self.algo.data
 
     def run(self, element: int, speed='mid'):
@@ -93,14 +96,6 @@ class SortVisualizer(Visualizer):
     def __init__(self, algoimpl: BubbleSort) -> None:
         super().__init__(algoimpl)
         self.algo = algoimpl
-        self.speeds = {
-            'flash': 0.03,
-            'godspeed': 0.2,
-            'ultra': 0.7,
-            'slow': 4,
-            'mid': 2,
-            'fast': 1
-        }
         self.data = self.algo.data
 
     def run(self, speed='mid'):
