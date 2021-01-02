@@ -1,8 +1,7 @@
-from typing import Union
 
 
 class BubbleSort:
-    def __init__(self, arr: Union[list, tuple]):
+    def __init__(self, arr: list) -> None:
         self.arr = arr
         self.data = {
             'algorithm': {
@@ -35,7 +34,8 @@ class BubbleSort:
                 self.data['comparisons'] += 1
                 yield self.data
                 if self.arr[j-1] > self.arr[j]:
-                    self.data['msg'] = f"{self.arr[j-1]} is greater than {self.arr[j]}, gonna swap"
+                    self.data['msg'] = str(self.arr[j-1]) + " is greater than " \
+                        + str(self.arr[j]) + ", gonna swap"
                     self.data['swaps'] += 1
                     self.data['comparing'] = False
                     self.data['swapping'] = True
