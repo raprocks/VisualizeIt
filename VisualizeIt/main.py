@@ -8,7 +8,18 @@ app = typer.Typer()
 
 
 @app.command()
-def sort(algo: str, array: str = "", speed: str = 'mid', array_size: int = 10):
+def sort(
+    algo: str = typer.Option("", help="ALgorithm to visualize, currently \
+                supports 'BubbleSort' and 'ImprovedBubbleSort'"),
+    array: str = typer.Option("", help="A Space Separated String of intergers which \
+                    will be converted to a list of integers using the map \
+                        function. Defaults to a randomly generated array."),
+    speed: str = typer.Option('mid', help="Speed of the visualization.\
+            Defaults to 'mid', can be 'slow', 'mid', 'fast', 'ultra', 'godspeed'\
+            or 'flash'."),
+    array_size: int = typer.Option(10, help="size of the array to be generated \
+if not explicitly provided. Defaults to 10.")
+):
     """Visualizer for Sorting Algorithms
 
     Args:
