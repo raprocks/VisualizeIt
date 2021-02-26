@@ -167,8 +167,7 @@ Style.RESET_ALL}
         deinit()
 
 
-
-class ImprovedSortVisualizer(Visualizer):s
+class ImprovedSortVisualizer(Visualizer):
     def __init__(self, algoimpl: BubbleSort) -> None:
         super().__init__(algoimpl)
         self.algo = algoimpl
@@ -240,5 +239,3 @@ Style.RESET_ALL}
             except StopIteration:
                 pass
         deinit()
-
-
