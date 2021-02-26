@@ -7,7 +7,7 @@ class BinarySearch:
     '''
 
     def __init__(self, arr: Union[list, tuple]):
-        self.arr = arr
+        self.arr = list(arr)
         self.data = {
             'algorithm': {
                 'type': 'Search',
