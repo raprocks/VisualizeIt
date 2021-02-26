@@ -15,8 +15,8 @@ def sort(
                     will be converted to a list of integers using the map \
                         function. Defaults to a randomly generated array."),
     speed: str = typer.Option('mid', help="Speed of the visualization.\
-            Defaults to 'mid', can be 'slow', 'mid', 'fast', 'ultra', 'godspeed'\
-            or 'flash'."),
+            Defaults to 'mid', can be 'slow', 'mid', 'fast', 'ultra',\
+                 'godspeed' or 'flash'."),
     array_size: int = typer.Option(10, help="size of the array to be generated \
 if not explicitly provided. Defaults to 10.")
 ):
