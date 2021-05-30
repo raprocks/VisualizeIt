@@ -6,8 +6,8 @@ class BinarySearch:
     Class for Performing Binary Search on an *Sorted* array for an Element
     '''
 
-    def __init__(self, arr: Union[list, tuple]):
-        self.arr = list(arr)
+    def __init__(self, arr: Union[str, list, tuple]):
+        self.arr = list(map(int, list(arr)))
         self.data = {
             'algorithm': {
                 'type': 'Search',

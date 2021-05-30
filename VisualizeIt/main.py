@@ -51,7 +51,11 @@ if not explicitly provided. Defaults to 10.
         printer = SortVisualizer(algorithm)
         printer.run(speed=speed)
     elif algo.lower() == "improvedbubblesort":
-        pass
+        from VisualizeIt_implementations.ImprovedBubbleSort import ImprovedBubbleSort
+        algorithm = ImprovedBubbleSort(list(array_to_sort))
+        from VisualizeIt.visualizer import ImprovedSortVisualizer
+        printer = ImprovedSortVisualizer(algorithm)
+        printer.run(speed=speed)
     else:
         print(
             f"""Invalid Algorithm Requested,
@@ -92,9 +96,9 @@ if not explicitly provided. Defaults to 10.
             element = int(randint(1, max(array_to_search)))
 
     if algo.lower() == "binarysearch":
-        from visualizeit_implementations.BinarySearch import BinarySearch
+        from VisualizeIt_implementations.BinarySearch import BinarySearch
         algorithm = BinarySearch(array)
-        from visualizeit.visualizer import SearchVisualizer
+        from VisualizeIt.visualizer import SearchVisualizer
         printer = SearchVisualizer(algorithm)
         printer.run(element=element, speed=speed)
     else:

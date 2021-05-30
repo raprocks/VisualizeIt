@@ -4,7 +4,7 @@ import sys
 from colorama import init, Fore, Style, deinit, Cursor
 from VisualizeIt_implementations.BinarySearch import BinarySearch
 from VisualizeIt_implementations.BubbleSort import BubbleSort
-from .VisualizeIt_implementations import ImprovedBubbleSort
+from VisualizeIt_implementations.ImprovedBubbleSort import ImprovedBubbleSort
 init()
 
 POS = Cursor.POS()
@@ -168,7 +168,7 @@ Style.RESET_ALL}
 
 
 class ImprovedSortVisualizer(Visualizer):
-    def __init__(self, algoimpl: BubbleSort) -> None:
+    def __init__(self, algoimpl: ImprovedBubbleSort) -> None:
         super().__init__(algoimpl)
         self.algo = algoimpl
         self.data = self.algo.data

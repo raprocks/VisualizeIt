@@ -1,6 +1,4 @@
-
-
-class BubbleSort:
+class ImprovedBubbleSort:
     def __init__(self, arr: list) -> None:
         self.arr = arr
         self.data = {
